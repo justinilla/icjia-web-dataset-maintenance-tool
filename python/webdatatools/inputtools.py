@@ -32,7 +32,7 @@ def init():
     global _DIR_PATH
 
     _CONN = database.CONN
-    _DIR_PATH = os.path.normpath('./input')
+    _DIR_PATH = 'P:\\DATA\\CJIA_WebData\\input'
 
 def _check_input_format(user_input):
     """Return True if a user input is in the correct format."""
@@ -53,8 +53,7 @@ def get_input_path():
     try:
         return f'{_DIR_PATH}\\{os.listdir(_DIR_PATH)[0]}'
     except IndexError:
-        print('ERROR: No file is found in "input" folder.')
-        raise
+        raise IndexError('ERROR: No file is found in "input" folder.')
 
 def fetch_data(population=False):
     """Fetch a user input file and return it as a pandas DataFrame.

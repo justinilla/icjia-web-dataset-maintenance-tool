@@ -36,6 +36,23 @@ def _prompt(msg, errmsg, isvalid):
     sleep(.300)
     return user_input
 
+def _complete_choices(msg, choice_range, prompt, all=False, back=True):
+    """Return the complete message and choice list.""" 
+    choice_list = [str(i) for i in choice_range]
+    
+    if all:
+        choice_list += ['a']
+        msg += '\n- a - All of the above.'
+
+    if back:
+        choice_list += ['b']
+        msg += '\n- b - Back to the main menu.'
+    
+    choice_list += ['q']
+    msg += f'\n- q - Exit the program.\n\n> {prompt}? [{"/".join(choice_list)}]'
+
+    return msg, choice_list
+
 def _exit_handler():
     msg = '\nAre you sure you wish to exit the program?' +\
         ' All intermediary results will be abandoned.' +\
@@ -54,12 +71,14 @@ def prompt_for_task_input():
     msg = '\nChoose the task you want to carry out:' +\
         '\n- 1 - Update the "simplecount" table in the database.' +\
         '\n- 2 - Update the "population" table in the database.' +\
-        '\n- 3 - Generate a dataset/datasets of your choice.' +\
-        '\n- q - Exit the program.' +\
-        '\n\n> Task to carry out? [1/2/3/q]'
-    errmsg = 'ERROR: Invalid choice for task! Try again.'
-    isvalid = lambda x: x in ['1', '2', '3', 'q']
+        '\n- 3 - Generate a dataset/datasets of your choice.'
     
+    choice_range = range(1,3+1)
+    prompt = 'Task to carry out'
+    msg, choice_list = _complete_choices(msg, choice_range, prompt, back=False)
+    errmsg = 'ERROR: Invalid choice for task! Try again.'
+    isvalid = lambda x: x in choice_list
+
     while True:
         user_input = _prompt(msg, errmsg, isvalid)
         if user_input == 'q':
@@ -101,14 +120,11 @@ def prompt_for_source_group_input(purpose, auto=False):
     for i in choice_range:
         msg += f'\n- {i} - {source_group_dict[i]}.'
 
-    choice_list = [str(i) for i in choice_range]
-    choice_list.append('b')
-    choice_list.append('q')
-
-    msg += f'\n- b - Back to the main menu.'
-    msg += f'\n- q - Exit the program.\n\n> Source group? [{"/".join(choice_list)}]'
+    prompt = 'Source group'
+    msg, choice_list = _complete_choices(msg, choice_range, prompt)
     errmsg = 'ERROR: Invalid choice for source group! Try again.'
     isvalid = lambda x: x in choice_list
+
     while True:
         user_input = _prompt(msg, errmsg, isvalid)
         if user_input == 'q':
@@ -140,12 +156,11 @@ def prompt_for_data_source_input(source_group):
         '\n- 3 - Small Area Income and Poverty Estimates (Online).'
         choice_range = range(1,3+1)
     
-    choice_list = [str(i) for i in choice_range]
-    choice_list.append('q')
-    
-    msg += f'\n- q - Exit the program.\n\n> Data source? [{"/".join(choice_list)}]'
+    prompt = 'Data source'
+    msg, choice_list = _complete_choices(msg, choice_range, prompt)
     errmsg = 'ERROR: Invalid choice for data source! Try again.'
     isvalid = lambda x: x in choice_list
+
     while True:
         user_input = _prompt(msg, errmsg, isvalid)
         if user_input == 'q':
@@ -159,12 +174,13 @@ def prompt_for_simplecount_input():
     msg = '\nSpecify the method type for updating simplecount table data.' +\
         ' Choices for the method type include:' +\
         '\n- 1 - Automatically update database records from select data sources.' +\
-        '\n- 2 - Manually provide input data for updating database records.' +\
-        '\n- b - Back to the main menu.' +\
-        '\n- q - Exit the program.' +\
-        '\n\n> Method type? [1/2/q]'
+        '\n- 2 - Manually provide input data for updating database records.'
+
+    choice_range = range(1, 2+1)
+    prompt = 'Method type'
+    msg, choice_list = _complete_choices(msg, choice_range, prompt)
     errmsg = 'ERROR: Invalid choice for method type! Try again.'
-    isvalid = lambda x: x in ['1', '2', 'b', 'q']
+    isvalid = lambda x: x in choice_list
     
     while True:
         user_input = _prompt(msg, errmsg, isvalid)
@@ -180,12 +196,13 @@ def prompt_for_population_input():
         ' Choices for the method type include:' +\
         '\n- 1 - Automatically update all estimates since the latest census year (recommended).' +\
         '\n- 2 - Automatically update the estimates for the latest year only.' +\
-        '\n- 3 - Manually provide input data for population estimates.' +\
-        '\n- b - Back to the main menu.' +\
-        '\n- q - Exit the program.' +\
-        '\n\n> Method type? [1/2/3/q]'
+        '\n- 3 - Manually provide input data for population estimates.'
+    
+    choice_range = range(1, 2+1)
+    prompt = 'Method type'
+    msg, choice_list = _complete_choices(msg, choice_range, prompt)
     errmsg = 'ERROR: Invalid choice for method type! Try again.'
-    isvalid = lambda x: x in ['1', '2', '3', 'b', 'q']
+    isvalid = lambda x: x in choice_list
     
     while True:
         user_input = _prompt(msg, errmsg, isvalid)
@@ -218,14 +235,12 @@ def prompt_for_dataset_package_input(source_group):
 
     for i in choice_range:
         msg += f'\n- {i} - Dataset: {package_dict[i]}.'
-    choice_list = [str(i) for i in choice_range]
     
+    prompt = 'Dataset to generate'
     if source_group in [1, 4, 5]:
-        msg += '\n- a - All of the above.'
-        choice_list.append('a')
-    
-    msg += '\n- q - Exit the program.\n\n> Dataset to generate? [.../q]'
-    choice_list.append('q')
+        msg, choice_list = _complete_choices(msg, choice_range, prompt, all=True)
+    else:
+        msg, choice_list = _complete_choices(msg, choice_range, prompt)
     errmsg = 'ERROR: Invalid dataset choice! Try again.'
     isvalid = lambda x: x in choice_list
     
@@ -242,7 +257,7 @@ def prompt_for_new_task(success=True):
     if success:
         msg_intro = '\nNOTE: Congratulations! Your task is successfully completed!'
     else:
-        msg_intro = '\nnNOTE: The program could not finish the task.' +\
+        msg_intro = '\nNOTE: The program could not finish the task.' +\
             ' All intermediary results will be abandoned.' +\
             ' Please check your input before retrying.'
     msg = '\nYou may continue to carry out another task (y)' +\
