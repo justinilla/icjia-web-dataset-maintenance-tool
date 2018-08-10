@@ -71,13 +71,13 @@ def _fetch_data_auto_helper(v, y):
     """
     filename = f'pcen_v{v}_y{y}_jul.txt.zip' if y % 10 == 0  else f'pcen_v{v}_y{y}.txt.zip'
     url = f'https://ftp.cdc.gov/pub/health_statistics/nchs/Datasets/NVSS/bridgepop/{v}/{filename}' 
-    print('Downloading: ' + filename)
+    print(f'WAIT: Fetching {filename}...')
 
     res = requests.get(url, verify=False)
     if res.status_code == 200:
         return _fetch_data_helper(BytesIO(res.content))
     elif res.status_code == 404:
-        raise ValueError('Warning: Population is up to date!')
+        raise ValueError('WARNING: Population is up to date!')
     else:
         res.raise_for_status()
 
@@ -209,7 +209,7 @@ def _delete_outdated_in_master(name_temp, name_master):
         c.close()
 
         if year_max_t <= year_max_m:
-            raise ValueError('Warning: Population table is already up-to-date.')
+            raise ValueError('WARNING: Population table is already up-to-date.')
         else:
             sql = f'DELETE FROM {name_master} WHERE year BETWEEN {year_min_t} AND {year_max_t};'
             database.execute_simple_sql(sql)

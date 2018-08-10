@@ -133,7 +133,7 @@ def reset_env(exit=True):
     wd.outputtools.delete_temp()
     wd.database.close()
     if exit:
-        print('NOTE: Exiting the program... Goodbye!')
+        print('NOTE: Exiting the program... Goodbye!\n')
 
 def handle_task_result(result):
     """Receive the task result and take appropriate actions based on the result."""
@@ -141,9 +141,11 @@ def handle_task_result(result):
         if result == 'success':
             wd.ui.prompt_for_new_task(success=True)
             reset_env(exit=False)
+            break
         elif result == 'failure':
             wd.ui.prompt_for_new_task(success=False)
             reset_env(exit=False)
+            break
         elif result == 'back':
             break
     

@@ -253,6 +253,7 @@ def create_temp(df, name_temp):
         validate_temp_table_name(name_temp)
         _create_and_insert_to_table(df, name_temp)
         commit()
+        print(f'NOTE: "{name_temp}" is successfully generated in database.')
     except:
         raise ValueError(f'ERROR: Cannot create a temporary table with the given name: {name_temp}.')
     
@@ -295,12 +296,12 @@ def delete_temp(name_temp=None):
                 if pattern.match(name):
                     _delete_table(name)
                     commit()
-                    print(f'NOTE: {name} is successfully removed.')
+                    print(f'NOTE: "{name}" is successfully removed from database.')
         else:
             if _check_table_name(name_temp, 'No temporary table found with the given name.'):
                 _delete_table(name_temp)
                 commit()
-                print(f'NOTE: {name_temp} is successfully removed.')
+                print(f'NOTE: "{name_temp}" is successfully removed from database.')
     except:
         raise
     

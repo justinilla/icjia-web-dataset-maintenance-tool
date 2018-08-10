@@ -636,25 +636,25 @@ def _fetch_input_auto(source):
         raise ValueError('Invalid data source.')
     
     if source == 'chri':
-        print('Fetching Criminal History data...')
+        print('WAIT: Fetching Criminal History data...')
         return _fetch_chri_data()
     elif source == 'idoc':
-        print('Fetching Prison data...')
+        print('WAIT: Fetching Prison data...')
         return _fetch_idoc_data()
     elif source == 'idjj':
-        print('Fetching Juvenile Court data...')
+        print('WAIT: Fetching Juvenile Court data...')
         return _fetch_idjj_data()
     elif source == 'ucr':
-        print('Fetching Uniform Crime Report data...')
+        print('WAIT: Fetching Uniform Crime Report data...')
         return _fetch_ucr_data()
     elif source == 'jail':
-        print('Fetching Jail data...')
+        print('WAIT: Fetching Jail data...')
         return _fetch_jail_data()
     elif source == 'employment':
-        print('Fetching Employment data...')
+        print('WAIT: Fetching Employment data...')
         return _fetch_laus_data()
     elif source == 'poverty':
-        print('Fetching Poverty data...')
+        print('WAIT: Fetching Poverty data...')
         return _fetch_poverty_data()
 
 def _create_temp(simplecount_input):

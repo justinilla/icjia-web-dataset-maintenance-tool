@@ -255,9 +255,9 @@ def prompt_for_dataset_package_input(source_group):
 def prompt_for_new_task(success=True):
     """Prompt for user input for continuing to carry out a new task."""
     if success:
-        msg_intro = '\nNOTE: Congratulations! Your task is successfully completed!'
+        msg_intro = 'NOTE: Congratulations! Your task is successfully completed!'
     else:
-        msg_intro = '\nNOTE: The program could not finish the task.' +\
+        msg_intro = 'NOTE: The program could not finish the task.' +\
             ' All intermediary results will be abandoned.' +\
             ' Please check your input before retrying.'
     msg = '\nYou may continue to carry out another task (y)' +\
@@ -269,6 +269,6 @@ def prompt_for_new_task(success=True):
     print(msg_intro)
     user_input = _prompt(msg, errmsg, isvalid)
     if user_input == 'y':
-        pass
+        return
     else:
         raise SystemExit

@@ -81,8 +81,13 @@ def create_temp(df, name_temp):
         bool: True for success, False otherwise.
 
     """
-    if database.validate_temp_table_name(name_temp):
-        _create_file(df, 'temp', name_temp)
+    try:
+        if database.validate_temp_table_name(name_temp):
+            _create_file(df, 'temp', name_temp)
+            print(f'NOTE: "{name_temp}" is successfully generated in /temp/.')
+    except:
+        print(f'ERROR: Cannot generate "{name_temp}".')
+        raise
 
 def delete_temp(name_temp=None):
     """Delete temporary tables in ``@/temp``.
@@ -104,10 +109,12 @@ def delete_temp(name_temp=None):
             for filename in filenames:
                 filename = re.sub('\..*', '', filename)
                 if database.validate_temp_table_name(filename):
-                    _delete_file('temp', filename)    
+                    _delete_file('temp', filename)
+                    print(f'NOTE: "{filename}" is successfully removed from /temp/.')
         else:
             if database.validate_temp_table_name(name_temp):
                 _delete_file('temp', name_temp)
+                print(f'NOTE: "{name_temp}" is successfully removed from /temp/.')
     except:
         raise
 
@@ -125,7 +132,7 @@ def _get_indicator_for_output(indicator, out_id):
     try:
         return indicator[indicator['fk_indicator_output'] == out_id]
     except:
-        print('No output is available for the provided input.')
+        print(f'ERROR: No output is available for the provided input (output id {out_id}).')
         raise
 
 def _get_output_source_group(output, out_id):
@@ -133,7 +140,7 @@ def _get_output_source_group(output, out_id):
     try:
         return output[output['id'] == out_id].iloc[0, 1]
     except:
-        print('Failed to get output source group.')
+        print(f'ERROR: Cannot get output source group for output id {out_id}!')
         raise
 
 def _filter_simplecount(simplecount, indicator, out_id):
@@ -155,7 +162,7 @@ def _filter_simplecount(simplecount, indicator, out_id):
         filter2 = simplecount['fk_simplecount_county'].isin(list(range(103)))
         return simplecount[filter1 & filter2]
     except:
-        print('Failed to filter.')
+        print(f'ERROR: Failed to filter simplecount for data output id: {out_id}')
         raise
 
 def _merge_to_filtered(filtered, county, indicator, out_id):
@@ -199,7 +206,7 @@ def _merge_to_filtered(filtered, county, indicator, out_id):
             .drop(col_to_drop2, axis=1)
         )
     except:
-        print('Failed to merge additional information to filtered count table.')
+        print('ERROR: Cannot merge additional information to filtered count table!')
         raise
 
 def _mask_less_than_10(df):
@@ -216,7 +223,7 @@ def _mask_less_than_10(df):
         masked.ix[masked.value < 10, 'value'] = math.nan
         return masked
     except:
-        print('Failed to maks less than 10.')
+        print('ERROR: Cannot mask values less than 10!')
         raise
 
 def _pivot_merged(merged):
@@ -236,7 +243,7 @@ def _pivot_merged(merged):
 
         return out.reset_index()
     except:
-        print('Failed to pivot.')
+        print('ERROR: Cannot pivot to create a separate column per indicator value!')
         raise
 
 def _get_count(simplecount, county, output, indicator, out_id):
@@ -264,7 +271,7 @@ def _get_count(simplecount, county, output, indicator, out_id):
         else:
             return _pivot_merged(merged)
     except:
-        print('Failed to get count table.')
+        print(f'ERROR: Cannot get count table for a data output id: {out_id}')
         raise
 
 def _aggregate_population(population, population_code):
@@ -311,7 +318,7 @@ def _aggregate_population(population, population_code):
             .sort_values(by='year', ascending=False, kind='mergesort')
         )
     except:
-        print('Failed to aggregate population.')
+        print('ERROR: Cannot aggregate population!')
         raise
 
 def _get_population(population, population_old, population_code):
@@ -340,7 +347,7 @@ def _get_population(population, population_old, population_code):
         
         return pop.reset_index(drop=True)
     except:
-        print('Failed to get population.')
+        print(f'ERROR: Cannot get population for population code: {population_code}')
         raise
 
 def _get_juv_population(population, population_old):
@@ -362,7 +369,7 @@ def _get_juv_population(population, population_old):
 
         return pop_before.append(pop_after).reset_index(drop=True)
     except:
-        print('Failed to get juvenile population.')
+        print('ERROR: Cannot get juvenile population!')
         raise
 
 def _generate_standard_output(out_id):
@@ -487,9 +494,8 @@ def _generate_output(out_id):
                 return _generate_standard_output(out_id)
             else:
                 return _generate_nonstandard_output(out_id)
-            print(f'NOTE: Successfully generated dataset: {name}')
         else:
-            raise ValueError('ERROR: The specificed output is currently not active.')
+            raise ValueError(f'ERROR: The specificed output with id {out_id} is currently not active.')
     except:
         raise
 
