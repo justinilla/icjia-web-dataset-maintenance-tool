@@ -16,17 +16,17 @@ The image below shows the content of a generated dataset package named `ucr_inde
 
 ![Packaged dataset example](../image/zipfile_content.png)
 
-### `README` file
+### README file
 Each packaged output contains one `README.txt` text file providing a list as well as brief description of all the zipfile contents. See the following image for an example of the `REAMD.txt` file:
 
 ![Readme example](../image/readme.png)
 
-### `metadata` file
+### Metadata file
 A metadata text file is generated per data file and offers detailed information about the data file. Accordingly, if the given packaged dataset output contains more than one data file, it would also contain a matching number of metadata files. See the following image for an example:
 
 ![Metadata example](../image/metadata.png)
 
-### `data` file
+### Data file
 A data comma-seperated values (`.csv`) file is generated using the records saved in the database file. Common to all data files are the following columns:
 
 * `year`: Data year

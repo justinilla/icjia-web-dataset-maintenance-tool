@@ -1,4 +1,4 @@
-# (incomplete) Database
+# Database (in development) 
 
 ## SQLite
 ![](https://upload.wikimedia.org/wikipedia/commons/3/38/SQLite370.svg)
@@ -24,36 +24,117 @@ Once DB Browser is downloaded and installed, you can use it to open SQLite datab
 ## Tables
 ### `CombinedCounty` table
 * General discription
-* Columns
+
+#### Columns
+* `id` (INTEGER)
+* `fk_combinedcounty_indicator` (INTEGER)
+* `year` (INTEGER)
+* `fk_container_county` (INTEGER)
+* `fk_contained_county` (INTEGER)
+
 ### `County` table
 * General discription
-* Columns
-### `SimpleCount` table
-* General discription
-* Columns
+
+#### Columns
+* `id` (INTEGER)
+* `fips_number` (REAL)
+* `county_name` (TEXT)
+* `judicial_circuit` (TEXT)
+* `fk_county_geography` (REAL)
+* `alphabetical_oder` (REAL)
+* `region` (TEXT)
+* `community_type` (TEXT)
+* `percent_rural` (REAL)
+
 ### `Geography` table
 * General discription
-* Columns
+
+#### Columns
+* `id` (INTEGER)
+* `description` (TEXT)
+
 ### `Indicator` table
 * General discription
-* Columns
+
+#### Columns
+* `id` (INTEGER)
+* `description` (TEXT)
+* `source` (TEXT)
+* `note` (TEXT)
+* `public_niote` (BLOB)
+* `adult_or_juvenile` (TEXT)
+* `fk_indicator_population_indicator` (REAL)
+* `fk_indicator_ratedivisor` (REAL)
+* `fk_indicator_output` (REAL)
+* `name` (TEXT)
+
 ### `Note` table
 * General discription
-* Columns
-### `Package` table
-* General discription
-* Columns
-### `Population` table
-* General discription
-* Columns
-### `PopulationOld` table
-* General discription
-* Columns
+
+#### Columns
+* `id` (INTEGER)
+* `note_text` (TEXT)
+
 ### `Output` table
 * General discription
-* Columns
+
+#### Columns
+* `id` (INTEGER)
+* `source_group` (INTEGER)
+* `name` (TEXT)
+* `old_name` (TEXT)
+* `standard` (INTEGER)
+* `active` (INTEGER)
+* `fk_output_package` (INTEGER)
+* `name_full` (TEXT)
+* `source` (TEXT)
+* `year_type` (TEXT)
+* `year_min` (REAL)
+* `year_max` (REAL)
+* `description` (TEXT)
+* `notes` (TEXT)
+* `column_name` (TEXT)
+* `column_info` (TEXT)
+
+### `Package` table
+* General discription
+
+#### Columns
+* `id` (INTEGER)
+* `name` (TEXT)
+
+### `Population` table
+* General discription
+
+#### Columns
+* `year` (INTEGER)
+* `fk_population_county` (INTEGER)
+* `age` (INTEGER)
+* `race_gender` (INTEGER)
+* `hispanic` (INTEGER)
+* `value` (INTEGER)
+
+### `PopulationOld` table
+* General discription
+
+#### Columns
+* `fk_population_county` (INTEGER)
+* `year` (INTEGER)
+* `fk_population_indicator` (INTEGER)
+* `value` (INTEGER)
+
 ### `RateDivisor` table
 * General discription
-* Columns
 
+#### Columns
+* `id` (INTEGER)
+* `description` (TEXT)
 
+### `SimpleCount` table
+* General discription
+
+#### Columns
+* `fk_simplecount_indicator` (INTEGER)
+* `fk_simplecount_county` (INTEGER)
+* `year` (INTEGER)
+* `value` (REAL)

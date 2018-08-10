@@ -7,7 +7,7 @@ footer: © 2018 Illinois Criminal Justice Information Authority | Powered by Vue
 ---
 
 ## Welcome!
-The Illinois Criminal Justice Information Authority (ICJIA) Research & Analysis (R&A) Unit's **Web Dataset Maintenance Tool** is a Python program written by [Bobae Kang](https://github.com/bobaekang/) (Research Analyst, [Bobae.Kang@illinois.gov](mailto:Bobae.Kang@illinois.gov)) and Yizi (Winnie) Huang (intern, [YiziwinnieH@hotmail.com](mailto:YiziwinnieH@hotmail.com)) to facilitate the process of maintaining the R&A Unit's web-published datasets.
+The Illinois Criminal Justice Information Authority (ICJIA) Research & Analysis (R&A) Unit's **Web Dataset Maintenance Tool** is a Python program written by [Bobae Kang](https://github.com/bobaekang/) (Research Analyst, [Bobae.Kang@illinois.gov](mailto:Bobae.Kang@illinois.gov)) and [Yizi (Winnie) Huang](https://www.linkedin.com/in/yiziwinniehuang/) (intern, [YiziwinnieH@hotmail.com](mailto:YiziwinnieH@hotmail.com)) to facilitate the process of maintaining the R&A Unit's web-published datasets.
 
 Using the Web Dataset Maintenance Tool, you will be able easily update the underlying database and generate the datasets that are ready to be uploaded on [the ICJIA website location for R&A Unit's downloadable datasets](http://www.icjia.state.il.us/research/overview#tab_research-data).
 

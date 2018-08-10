@@ -62,4 +62,4 @@ You can open PowerShell anywhere on the PC. Simply hold a `Shift` key, press the
 ## Set up the P:\ network drive
 The current documentation assumes that you have access to the `\\MAINFILESRV` network drive, which serves as a main storage for the R&A Unit and is conventionally mapped to `P:\` on a staff member's workstation. In fact, the WDM Tool is located at the `P:\DATA\CJIA_Webdata\` directory. 
 
-Therefore, before proceeding to the rest of the documentation, make sure you have access to `\\MAINFILESRV` and the network drive is correctly mapped to `P:\`. Contact the DoIT staff for help if needed.
+Therefore, before proceeding to the rest of the documentation, make sure you have access to `\\MAINFILESRV\r&a\` and the network drive is correctly mapped to `P:\`. Contact the DoIT staff for help if needed.

@@ -4,9 +4,9 @@ This section is prepared to provide the ICJIA staff responsible for maintaninig 
 The Web Dataset Maintenance (WDM) Tool is a Python program using a custom Python package written specifically for fuctionalities required by the Tool. All Python scripts are located at `P:\DATA\CJIA_Webdata\python\`.
 
 ```
-python
+python/
 ├─ __main__.py
-└─ webdatatools
+└─ webdatatools/
     ├─ __init__.py
     ├─ database.py
     ├─ intputtools.py

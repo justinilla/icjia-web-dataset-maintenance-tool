@@ -1,4 +1,4 @@
-# (incomplete) Data Sources
+# Data Sources (in development) 
 
 ::: warning NOTE
 Bold-font numbers in the rest of this section correspond to the ID value of the ``Indicator`` table in the database file.
