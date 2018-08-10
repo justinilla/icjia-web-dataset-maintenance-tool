@@ -61,7 +61,13 @@ def task_simplecount():
     auto = True if simplecount_input == '1' else False
     if auto:
         source_group_input = wd.ui.prompt_for_source_group_input('updating simplecount', auto)
+        if source_group_input == 'b':
+            return 'back'
+
         source_input = wd.ui.prompt_for_data_source_input(int(source_group_input))
+        if source_input == 'b':
+            return 'back'
+
         return simplecount_auto_input(int(source_group_input), int(source_input))
     else:
         return simplecount_manual_input()    
@@ -106,6 +112,8 @@ def task_dataset():
         print('WAIT: Generating the datasets...')
         generated = wd.outputtools.generate_packages_by_source_group(int(source_group_input))
         print('NOTE: All datasets are generated!')
+    elif package_input == 'b':
+        return 'back'
     else:
         print('WAIT: Generating the dataset...')
         generated = wd.outputtools.generate_package(int(package_input))
