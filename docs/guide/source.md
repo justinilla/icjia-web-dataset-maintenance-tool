@@ -1,4 +1,4 @@
-# Data Sources (in development) 
+# Data Sources
 
 ::: warning NOTE
 Bold-font numbers in the rest of this section correspond to the ID value of the ``Indicator`` table in the database file.
@@ -174,7 +174,7 @@ Aggregating `IDJJ_Admissions` and `IDJJ_Exits` counts is based on fiscal years. 
 :::
 
 ## Illinois Dept. of Corrections - Other
-Jail and Detention Standards data are obtained directly from the source via email and stored in `P:/DATA/JAIL`. Use data in `yyyy ICJIA County SUP Totals.xls` files. Some of the old data come from `Jailpop.xls`. Cook county has a separate data source: [CAFR](https://www.cookcountyil.gov/service/financial-reports).
+Jail and Detention Standards data are obtained directly from the source via email and stored in `P:/DATA/JAIL/`. Use data in `yyyy ICJIA County SUP Totals.xls` files. Some of the old data come from `Jailpop.xls`. Cook county has a separate data source: [CAFR](https://www.cookcountyil.gov/service/financial-reports).
 
 * **1500**: sum of `TOTAL Number of Bookings` per county 
 * **1510**: average of `Average Monthly Pop` per county
@@ -183,6 +183,8 @@ Jail and Detention Standards data are obtained directly from the source via emai
 ## Illinois State Police
 
 ### Uniform Crime Reports
+The State Police releases annual Uniform Crime Reports [here](http://www.isp.state.il.us/crime/ucrhome.cfm). Currently, each year's report comes with four datasets.
+
 * **File: Index Crime Offense & Drug Arrest Data**
     * **1400**: `Acca##` value
     * **1401**: `Acsa##` value
@@ -213,42 +215,48 @@ Jail and Detention Standards data are obtained directly from the source via emai
 * **File: Domestic Offenses Data**
     * **1100**: `Domestic##` value
 
-* ** File: Hate Crime Incidents Data**
+* **File: Hate Crime Incidents Data**
     * **1130**: `Hate##` value
 
 * **File: School Incidents Data**
     * **1110**: *Discontinued as of 2014*
     * **1120**: Sum of `ch##`, `csa##`, `aggbatt##`, `batt##`, `aggasslt##`, `assault##`, and `intimidate##` values
 
-### Drug seizures and submissions
-Drug seizures and submissions data are obtained directly from the source via email and stored in `P:/DATA/DRUG`. Contact Idetta Phillips (Research Analyst, [Idetta.Phillips@illinois.gov](mailto:Idetta.Phillips@Illinois.gov)) for more information.
+::: warning NOTE
+`##` in the column names represent the last two digits of the latest year.
+:::
 
-* **filename**
-    * **1700**:
-    * **1701**:
-    * **1705**:
-    * **1706**:
-    * **1710**:
-    * **1711**:
-    * **1715**:
-    * **1716**:
-    * **1720**:
-    * **1721**:
-    * **1725**:
-    * **1726**:
-    * **1727**:
+### Drug seizures and submissions
+Drug seizures and submissions data are obtained directly from the source via email and stored in `P:/DATA/DRUG/`. In particular, the original data files are stored in a subdirectory, `./Miscellany/Monthly drug lab submissions by county/`. Contact Idetta Phillips (Research Analyst, [Idetta.Phillips@illinois.gov](mailto:Idetta.Phillips@Illinois.gov)) for more information.
+
+* **File: SPIntell mmyy.dbf**
+    * **1700**: Sum of `WEIGHT` values where `DRUGNAME` is `Cannabis`
+    * **1701**: Sum of `ENTRIES` values where `DRUGNAME` is `Cannabis`
+    * **1705**: Sum of `WEIGHT` values where `DRUGNAME` is `Cocaine`
+    * **1706**: Sum of `ENTRIES` values where `DRUGNAME` is `Cocaine`
+    * **1710**: *Discontinued*
+    * **1711**: *Discontinued*
+    * **1715**: Sum of `WEIGHT` values where `DRUGNAME` is `Heroin`
+    * **1716**: Sum of `ENTRIES` values where `DRUGNAME` is `Heroin`
+    * **1720**: Sum of `WEIGHT` values where `DRUGNAME` is `Methamphetamine`
+    * **1721**: Sum of `ENTRIES` values where `DRUGNAME` is `Methamphetamine`
+    * **1725**: Sum of `WEIGHT` values where `DRUGNAME` not in the specified ones
+    * **1726**: Sum of `ENTRIES` values where `DRUGNAME` not in the specified ones
+    * **1727**: Sum of `WEIGHT` values where `DRUGNAME` in (`Amphetamine`, `Methamphetamine`)
 
 ## Other sources
 
 ### Illinois Board of Education
-Indicators **800**-**842** are discontinued.
+Indicators **800** through **842** are discontinued.
 
 ### Illinois Department of Againg
-P:/DATA/Elder Abuse
-* **1140**:
+Historical elder abuse data are obtained directly from the source via email and stored in `P:/DATA/Elder Abuse/`. This dataset has not been updated for a while and may be discontinued in future.
+
+* **1140**: Value for the relevant year.
 
 ### Illinois Department of Children and Family Services
-Child Abuse and Neglect Statistics (example: [2015 report](https://www2.illinois.gov/dcfs/aboutus/newsandreports/Documents/DCFS_Annual_Statistical_Report_FY2015.pdf)) tables 7, 8, 19, 20. Children is defined as age <= 17.
+Child abuse related data are drawn from [Child Abuse and Neglect Statistics by Illinois Department of Children and Family Services](https://www2.illinois.gov/dcfs/aboutus/newsandreports/reports/Pages/default.aspx), especially tables 7, 8, 19, 20 of the Annual Statistical Report. Children is defined as age <= 17. See the latest example, [the fiscal year 2015 report](https://www2.illinois.gov/dcfs/aboutus/newsandreports/Documents/DCFS_Annual_Statistical_Report_FY2015.pdf).
+
 * **Table 7: County Distribution of Alleged Victims of Abuse and Neglect**
     * **600**: `Number Children` value
 
@@ -262,21 +270,22 @@ Child Abuse and Neglect Statistics (example: [2015 report](https://www2.illinois
     * **603**: `Number Children` value
 
 ### Illinois Department of Employment
-County-level records from annual Local Area Unemployment Statistics (example: [2017 report](http://www.ides.illinois.gov/LMI/Local%20Area%20Unemployment%20Statistics%20LAUS/historical/2017-moaa.xls))
+County-level unemployment data are drawn from [Local Area Unemployment Statistics (LAUS)](http://www.ides.illinois.gov/LMI/Pages/Local_Area_Unemployment_Statistics.aspx) by the Illinois Department of Employment. See the latest example, [2017 report](http://www.ides.illinois.gov/LMI/Local%20Area%20Unemployment%20Statistics%20LAUS/historical/2017-moaa.xls).
 
-* **Local Area Unemployment Statistics**
-    * **1030**: `LABOR FORCE` value
-    * **1550**: `EMPLOYED` value
-    * **1551**: `UNEMPLOYED NUMBER` value
+* **Local Area Unemployment Statistics Table**
+    * **1030**: `LABOR FORCE` value where `MONTH#` is 13 (annual average)
+    * **1550**: `EMPLOYED` value where `MONTH#` is 13 (annual average)
+    * **1551**: `UNEMPLOYED NUMBER` value where `MONTH#` is 13 (annual average)
 
 ### Illinois Department of Human Services
 Indicators **1210**, **1220** and **1229** are discontinued.
 
-### U.S. Census Bureau
-Indicators **900** and **1000** are discontinued. Use population table aggregates instead.
+### National Vital Statistics System:
+The "Population" table records are drawn from [U.S. Census Populations With Bridged Race Categories](https://www.cdc.gov/nchs/nvss/bridged_race.htm) by the National Vital Statistics System. The data files are also available on <a href="ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NVSS/bridgepop/">the Center for Disease Control and Prevension FTP server</a>.
 
-* **Small Area Income and Poverty Estimates**
-E.g. [2016 data](https://www2.census.gov/programs-surveys/saipe/datasets/2016/2016-state-and-county/est16-il.txt).
-See layout [documentation](https://www2.census.gov/programs-surveys/saipe/technical-documentation/file-layouts/state-county/2016-estimate-layout.txt).
+### U.S. Census Bureau
+Illinois poverty estimates data are drawn from [Small Area Income and Poverty Estimates (SAIPE)](https://www.census.gov/programs-surveys/saipe.html). The actual datasets can be found [here](https://www2.census.gov/programs-surveys/saipe/datasets/). Also, see the layout [documentation](https://www2.census.gov/programs-surveys/saipe/technical-documentation/file-layouts/state-county/2016-estimate-layout.txt) for more information.
+
+* **File: /yyyy/yyyy-state-and-county/estyy-il.txt**
     * **1200**: characters 8-15 (Estimate of people of all ages in poverty)
     * **1201**: characters 50-57 (Estimate of people age 0-17 in poverty)

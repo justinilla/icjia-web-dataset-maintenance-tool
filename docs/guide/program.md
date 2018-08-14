@@ -104,23 +104,23 @@ The `webdatatools.outputtools` module contains the following public functions to
 
 ### Module `webdatatools.population` 
 This module offer functions to automate the process of updating
-the `Population` table in the database file, `@/database/database.db`. The module depends on `webdatatools.database`, `webdatatools.inputtools` and `webdatatools.outputtools` modules.
+the "Population" table in the database file, `@/database/database.db`. The module depends on `webdatatools.database`, `webdatatools.inputtools` and `webdatatools.outputtools` modules.
 
 The `webdatatools.population` module contians the the following public functions to be called externally:
 
 * `init()` initalizes the `population` module.
 * `fetch_input_and_create_temp()` fetches input and create a temporary output.
-* `finalize_update()` finalizes the process of updating the `Population` table.
+* `finalize_update()` finalizes the process of updating the "Population" table.
 
 ### Module `webdatatools.simplecount`
 This module offer functions to automate the process of updating
-the `SimpleCount` table in the database file, `@/database/database.db`. The module depends on `webdatatools.database`, `webdatatools.inputtools` and `webdatatools.outputtools` modules.
+the "SimpleCount" table in the database file, `@/database/database.db`. The module depends on `webdatatools.database`, `webdatatools.inputtools` and `webdatatools.outputtools` modules.
 
 The `webdatatools.simplecount` module contians the the following public functions to be called externally:
 
 * `init()` initalizes the `simplecount` module.
 * `fetch_input_and_create_temp()` fetches input and create a temporary output.
-* `finalize_update()` finalizes the process of updating the `SimpleCount` table.
+* `finalize_update()` finalizes the process of updating the "SimpleCount" table.
 
 ### Module `webdatatools.ui`
 This module offer functions to prompt for and handle user inputs. The module depends on the `webdatatools.database` module.

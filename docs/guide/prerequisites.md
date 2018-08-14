@@ -47,6 +47,10 @@ In order to add Python to PATH, first go to Start and search for "Edit environme
 * `C:\ProgramData\Anaconda3\`
 * `C:\ProgramData\Anaconda3\Scripts\`
 
+::: warning NOTE
+You must be logged on with your personal account when editing the PATH environmental variable.
+:::
+
 Once you apply the change, Python should be accessible from anywhere on your PC. You may test this by opening a command-line tool, and execute `python --version` as in the following image:
 
 ![Microsoft Powershell screenshot](../image/prerequisites_1.png)
