@@ -1,5 +1,7 @@
 # ICJIA Web Dataset Maintenance Tool
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This repository contains documentation website files as well as Python scripts for the Illinois Criminal Justice Information Authority (ICJIA) Research & Analysis (R&A) Unit's Web Dataset Maintenance (WDM) Tool.
 
 ![](image.png)
