@@ -19,11 +19,32 @@ opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, python.reticulate=FALSE
 
 ## Agenda {data-transition="zoom"}
 
+> * Background
 > * Design and Implementation
 > * Showcase
 > * Path forward
 
-# Design and<br>implementation {data-background="#466c8c"}
+# Background {data-background="#466c8c"}
+
+## {data-transition="concave-in fade-out"}
+```{r out.width="70%"}
+include_graphics("image/background_1.png")
+```
+
+## {data-transition="fade-in concave-out"}
+```{r out.width="70%"}
+include_graphics("image/background_2.png")
+```
+
+##
+```{r out.width="75%"}
+include_graphics("image/format_1_1.png")
+```
+
+##
+```{r out.width="75%"}
+include_graphics("image/process_old.png")
+```
 
 ## Motivation
 * Time-consuming
@@ -32,15 +53,16 @@ opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, python.reticulate=FALSE
 * Outmoded data format
 * Overreliance on a single individual
 
-## {data-transition="concave-in fade-out"}
-```{r out.width="75%"}
-include_graphics("image/process_old.png")
-```
+## Project timeline
+| Month | Task |
+| --- | --- |
+| MAY | Initial planning<br>Inspecting the previous system |
+| JUN<br> | Winnie joined the project<br>Designing the DB structure |
+| JUL | Implementing the DB structure<br>Building the application |
+| AUG | Testing the application<br>Building the documentation site |
 
-## {data-transition="fade-in concave-out"}
-```{r out.width="75%"}
-include_graphics("image/process_new.png")
-```
+
+# Design and<br>implementation {data-background="#466c8c"}
 
 ## What we did
 * Automation
@@ -117,6 +139,11 @@ include_graphics("image/division_1.png")
 ## Division of labor {data-transition="fade-in concave-out"}
 ```{r out.width="60%"}
 include_graphics("image/division_2.png")
+```
+
+##
+```{r out.width="75%"}
+include_graphics("image/process_new.png")
 ```
 
 # Showcase {data-background="#466c8c"}
